@@ -2,6 +2,7 @@ package com.benji.api.app.controllers;
 
 import com.benji.api.app.data.ExamplePayload;
 import com.benji.api.app.interfaces.ExamplesService;
+import com.benji.api.app.models.Example;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class ExampleController {
      * @return list of examples
      */
     @GetMapping
-    public ResponseEntity<List<ExamplePayload>> index() {
+    public ResponseEntity<List<Example>> index() {
         return ResponseEntity.ok(service.getAll());
     }
 
@@ -49,7 +50,7 @@ public class ExampleController {
      * @return list of all examples
      */
     @PostMapping
-    public ResponseEntity<List<ExamplePayload>> create(ExamplePayload payload) {
+    public ResponseEntity<List<Example>> create(ExamplePayload payload) {
         service.insert(payload);
         return ResponseEntity.ok(service.getAll());
     }
@@ -61,7 +62,7 @@ public class ExampleController {
      * @return list of all examples
      */
     @DeleteMapping("/{index}")
-    public ResponseEntity<List<ExamplePayload>> destroy(@PathVariable(name = "index") int index) {
+    public ResponseEntity<List<Example>> destroy(@PathVariable(name = "index") int index) {
         service.delete(index);
         return ResponseEntity.ok(service.getAll());
     }
